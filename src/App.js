@@ -19,7 +19,7 @@ function App() {
   const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/inputs')
+    axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs')
       .then(response => setInputs(response.data))
       .catch(error => console.error('There was an error fetching the inputs!', error));
   }, []);
@@ -34,7 +34,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = `http://localhost:5000/api/inputs/${currentId ? currentId : ''}`;
+    const url = `https://ai-app-9173f269729f.herokuapp.com/api/inputs/${currentId ? currentId : ''}`;
 
     if (editMode) {
       axios.put(url, formData)
@@ -52,12 +52,12 @@ function App() {
           });
           setEditMode(false);
           setCurrentId(null);
-          return axios.get('http://localhost:5000/api/inputs');
+          return axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs');
         })
         .then(response => setInputs(response.data))
         .catch(error => console.error('There was an error!', error));
     } else {
-      axios.post('http://localhost:5000/api/inputs', formData)
+      axios.post('https://ai-app-9173f269729f.herokuapp.com/api/inputs', formData)
         .then(response => {
           console.log('Input saved:', response.data);
           setFormData({
@@ -70,7 +70,7 @@ function App() {
             co2: false,
             scheduling: ''
           });
-          return axios.get('http://localhost:5000/api/inputs');
+          return axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs');
         })
         .then(response => setInputs(response.data))
         .catch(error => console.error('There was an error!', error));
@@ -93,10 +93,10 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/api/inputs/${id}`)
+    axios.delete(`https://ai-app-9173f269729f.herokuapp.com/api/inputs/${id}`)
       .then(() => {
         console.log('Input deleted');
-        return axios.get('http://localhost:5000/api/inputs');
+        return axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs');
       })
       .then(response => setInputs(response.data))
       .catch(error => console.error('There was an error!', error));
