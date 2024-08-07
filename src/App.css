@@ -1,5 +1,4 @@
-/* App.css */
-
+/* General styling for the body and headings */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -12,6 +11,7 @@ h1, h2 {
   text-align: center;
 }
 
+/* Form styling */
 form {
   max-width: 600px;
   margin: 20px auto;
@@ -25,15 +25,15 @@ form input[type="text"],
 form input[type="checkbox"],
 form input[type="submit"] {
   display: block;
-  width: 96%;
+  width: 100%; /* Adjusted to span full width */
   padding: 10px;
   margin-bottom: 10px;
   font-size: 16px;
 }
 
 form input[type="checkbox"] {
-  width: auto;
-  margin-right: 10px;
+  width: auto; /* Adjusted for checkboxes */
+  margin-right: 5px; /* Space between checkbox and label */
 }
 
 form label {
@@ -55,6 +55,7 @@ form input[type="submit"]:hover {
   background-color: #45a049;
 }
 
+/* List styling */
 ul {
   list-style-type: none;
   padding: 0;
@@ -74,6 +75,7 @@ li strong {
   color: #333;
 }
 
+/* Button styling */
 button {
   margin-right: 10px;
   padding: 5px 10px;
@@ -98,49 +100,7 @@ button.delete:hover {
   background-color: #C0392B;
 }
 
-/* Specific styling for inputs within the list entries */
-.entries-list li input[type="text"],
-.entries-list li input[type="checkbox"] {
-  width: 100%; /* Ensure inputs span full width */
-  box-sizing: border-box; /* Include padding and border in the width */
-}
-
-/* General textarea styling for the app */
-textarea {
-  width: 100%; /* Ensure textarea spans full width */
-  box-sizing: border-box; /* Include padding and border in the width */
-  padding: 10px; /* Adjust padding as needed */
-  border: 1px solid #ccc; /* Border styling */
-  border-radius: 4px; /* Rounded corners */
-  resize: vertical; /* Allow vertical resizing only */
-  overflow: hidden; /* Hide overflow to prevent scrollbars */
-  min-height: 40px; /* Set a minimum height for the textarea */
-}
-
-/* Specific styling for textarea within the list entries */
-.entries-list li textarea {
-  width: 100%; /* Ensure textarea spans full width */
-  box-sizing: border-box; /* Include padding and border in the width */
-  resize: vertical; /* Allow vertical resizing only */
-  overflow: hidden; /* Hide overflow to prevent scrollbars */
-}
-
-/* Styling for textarea containers if needed */
-.textarea-group {
-  display: flex;
-  flex-direction: column;
-  width: 100%; /* Ensure container spans full width */
-}
-
-/* Ensure form and list items are also properly sized */
-.new-entry-form,
-.entries-list li {
-  width: 100%; /* Ensure form and list items span full width */
-  box-sizing: border-box; /* Include padding and border in the width */
-}
-
-
-/* Ensure checkboxes and labels are inline in the list and edit modes */
+/* Checkbox group styling for both form and list */
 .checkbox-group {
   display: flex;
   align-items: center; /* Vertically align items in the center */
@@ -160,3 +120,29 @@ textarea {
 .checkbox-group strong {
   margin-right: 5px; /* Space between label text and checkbox */
 }
+
+/* General textarea styling */
+textarea {
+  width: 100%; /* Ensure textarea spans full width */
+  box-sizing: border-box; /* Include padding and border in the width */
+  padding: 10px; /* Adjust padding as needed */
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 4px; /* Rounded corners */
+  resize: vertical; /* Allow vertical resizing only */
+  overflow: hidden; /* Hide overflow to prevent scrollbars */
+  min-height: 40px; /* Set a minimum height for the textarea */
+}
+
+/* Ensure textarea spans full width in list entries */
+.entries-list li textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure form and list items are properly sized */
+.new-entry-form,
+.entries-list li {
+  width: 100%; /* Ensure form and list items span full width */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
