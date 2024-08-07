@@ -170,6 +170,10 @@ textarea {
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
+/* Container for the delete button */
+.entries-list li .delete-container {
+  margin-left: auto; /* Push delete button to the right */
+}
 
 /* Ensure form and list items are properly sized */
 .new-entry-form,
