@@ -103,6 +103,7 @@ button.delete {
   background-color: #FF4136;
   float: right; /* Float delete button to the right */
   margin-left: 10px; /* Space to the left of the delete button */
+  clear: both;
 }
 
 button.delete:hover {
