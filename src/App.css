@@ -79,6 +79,7 @@ li strong {
   display: inline-block;
   width: 120px;
   color: #333;
+  white-space: nowrap;
 }
 
 /* Button styling */
