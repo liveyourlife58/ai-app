@@ -139,20 +139,24 @@ textarea {
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
-/* Styling for checkbox group */
+
+/* Ensure checkboxes and labels are inline in the list and edit modes */
 .checkbox-group {
   display: flex;
   align-items: center; /* Vertically align items in the center */
   gap: 10px; /* Space between checkboxes */
 }
 
-.checkbox-group label {
+.checkbox-group div {
   display: flex;
   align-items: center; /* Align label text with the checkbox */
-  margin: 0; /* Remove default margin */
+  margin-right: 10px; /* Space between individual checkbox groups */
 }
 
-/* Ensure checkboxes are inline with their labels */
 .checkbox-group input[type="checkbox"] {
   margin-right: 5px; /* Space between checkbox and label text */
+}
+
+.checkbox-group strong {
+  margin-right: 5px; /* Space between label text and checkbox */
 }
