@@ -192,7 +192,7 @@ function App() {
             />
           </label>
           </div>
-          <button type="submit">Save New Entry</button>
+          <button clasName="save" type="submit">Save New Entry</button>
           <button onClick={() => setAddingNew(false)}>Cancel</button>
         </form>
       )}
@@ -255,7 +255,7 @@ function App() {
             </div>
             {editMode === input._id ? (
               <div>
-                <button onClick={() => handleSave(input._id)}>Save</button>
+                <button className="save" onClick={() => handleSave(input._id)}>Save</button>
                 <button onClick={() => toggleEditMode(input._id)}>Cancel</button>
                 {savingStatus === input._id && <span className="saving">Saving...</span>}
                 <div className="delete-container">
