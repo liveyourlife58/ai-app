@@ -39,12 +39,14 @@ form input[type="checkbox"] {
   display: inline-block; /* Inline-block to align better with labels */
   width: auto; /* Prevent checkboxes from stretching full width */
   margin-right: 5px; /* Space between checkbox and label */
+  margin-left: 20px;
 }
 
 /* Label styling */
 form label {
   display: flex; /* Flexbox for aligning checkboxes and labels */
   align-items: center;
+  margin-left: 100px;
 }
 
 
@@ -168,7 +170,7 @@ textarea {
 
 /* Prevent overlap by ensuring labels do not push inputs */
 .entries-list li strong {
-  flex: 0 0 120px; /* Fixed width for labels */
+  flex: 0 0 10px; /* Fixed width for labels */
   margin-right: 10px; /* Space between label and input */
   white-space: nowrap; /* Prevent label text from wrapping */
 }
