@@ -22,22 +22,29 @@ function App() {
   const herokuURI = 'https://ai-app-9173f269729f.herokuapp.com/api/inputs';
 
   useEffect(() => {
+    // Fetch data from the backend
     axios.get(herokuURI)
       .then(response => {
         setInputs(response.data);
-
-        // Auto-resize all textareas on initial load
-        setTimeout(() => {
-          document.querySelectorAll('textarea').forEach(autoResizeTextarea);
-        }, 0);
+  
+        // After setting inputs, adjust the height of all textareas
+        document.querySelectorAll('textarea').forEach(textarea => {
+          autoResizeTextarea({ target: textarea });
+        });
       })
       .catch(error => console.error('There was an error fetching the inputs!', error));
   }, []);
+  
 
   const autoResizeTextarea = (e) => {
-    e.target.style.height = 'auto';
-    e.target.style.height = `${e.target.scrollHeight}px`;
+    const target = e?.target || e; // If e.target exists, use it; otherwise, use e directly (for useEffect)
+  
+    if (target) {
+      target.style.height = 'auto';
+      target.style.height = `${target.scrollHeight}px`;
+    }
   };
+  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -49,7 +56,7 @@ function App() {
     // Auto-resize textarea
     if (e.target.tagName.toLowerCase() === 'textarea') {
       autoResizeTextarea(e);
-    }
+    }    
   };
 
   const handleEditChange = (e, id) => {
