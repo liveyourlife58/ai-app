@@ -114,19 +114,20 @@ function App() {
     axios.post(herokuURI, formData)
       .then(response => {
         console.log('Input saved:', response.data);
+        
         setInputs(prevInputs => {
           const updatedInputs = [...prevInputs, response.data];
           
-          // Ensure the DOM has updated before resizing the new textarea
+          // Delay execution to ensure the new entry is in the DOM
           setTimeout(() => {
-            const textarea = document.querySelector(`textarea[name="notes"][value="${response.data.notes}"]`);
-            if (textarea) {
+            document.querySelectorAll('textarea').forEach(textarea => {
               autoResizeTextarea({ target: textarea });
-            }
+            });
           }, 0);
   
           return updatedInputs;
         });
+  
         setFormData({
           customerName: '',
           notes: '',
@@ -138,11 +139,10 @@ function App() {
           scheduling: ''
         });
         setAddingNew(false);
-        return axios.get(herokuURI);
       })
-      .then(response => setInputs(response.data))
       .catch(error => console.error('There was an error!', error));
   };
+  
   
 
   const toggleEditMode = (id) => {
