@@ -27,13 +27,16 @@ function App() {
       .then(response => {
         setInputs(response.data);
   
-        // After setting inputs, adjust the height of all textareas
-        document.querySelectorAll('textarea').forEach(textarea => {
-          autoResizeTextarea({ target: textarea });
-        });
+        // Ensure the DOM has updated before resizing the textareas
+        setTimeout(() => {
+          document.querySelectorAll('textarea').forEach(textarea => {
+            autoResizeTextarea({ target: textarea });
+          });
+        }, 0);
       })
       .catch(error => console.error('There was an error fetching the inputs!', error));
   }, []);
+  
   
 
   const autoResizeTextarea = (e) => {
