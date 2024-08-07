@@ -6,12 +6,9 @@ function App() {
   const [formData, setFormData] = useState({
     customerName: '',
     notes: '',
-    billing1: '',
-    billing2: '',
-    billing3: '',
-    co1: false,
-    co2: false,
-    scheduling: ''
+    billing: false,
+    parts: false,
+    scheduling: false
   });
 
   const [inputs, setInputs] = useState([]);
@@ -99,13 +96,10 @@ function App() {
     setAddingNew(true);
     setFormData({
       customerName: '',
-      notes: '',
-      billing1: '',
-      billing2: '',
-      billing3: '',
-      co1: false,
-      co2: false,
-      scheduling: ''
+    notes: '',
+    billing: false,
+    parts: false,
+    scheduling: false
     });
   };
 
@@ -131,12 +125,9 @@ function App() {
         setFormData({
           customerName: '',
           notes: '',
-          billing1: '',
-          billing2: '',
-          billing3: '',
-          co1: false,
-          co2: false,
-          scheduling: ''
+          billing: false,
+          parts: false,
+          scheduling: false
         });
         setAddingNew(false);
       })
@@ -174,52 +165,33 @@ function App() {
             onChange={handleChange}
             placeholder="Notes"
           />
-          <input
-            type="text"
-            name="billing1"
-            value={formData.billing1}
-            onChange={handleChange}
-            placeholder="Billing1"
-          />
-          <input
-            type="text"
-            name="billing2"
-            value={formData.billing2}
-            onChange={handleChange}
-            placeholder="Billing2"
-          />
-          <input
-            type="text"
-            name="billing3"
-            value={formData.billing3}
-            onChange={handleChange}
-            placeholder="Billing3"
-          />
           <label>
-            CO1
+            Billing
+          <input
+            type="checkbox"
+            name="billing"
+            value={formData.billing}
+            onChange={handleChange}
+          />
+          </label>
+          <label>
+            Parts
             <input
               type="checkbox"
-              name="co1"
-              checked={formData.co1}
+              name="parts"
+              checked={formData.parts}
               onChange={handleChange}
             />
           </label>
           <label>
-            CO2
+            Scheduling
             <input
               type="checkbox"
-              name="co2"
-              checked={formData.co2}
+              name="scheduling"
+              checked={formData.scheduling}
               onChange={handleChange}
             />
           </label>
-          <input
-            type="text"
-            name="scheduling"
-            value={formData.scheduling}
-            onChange={handleChange}
-            placeholder="Scheduling"
-          />
           <button type="submit">Save New Entry</button>
           <button onClick={() => setAddingNew(false)}>Cancel</button>
         </form>
@@ -250,51 +222,21 @@ function App() {
               />
             </div>
             <div>
-              <strong>Billing1:</strong>
-              <input
-                type="text"
-                name="billing1"
-                value={input.billing1 || ''}
-                onChange={(e) => handleEditChange(e, input._id)}
-                disabled={editMode !== input._id}
-              />
-            </div>
-            <div>
-              <strong>Billing2:</strong>
-              <input
-                type="text"
-                name="billing2"
-                value={input.billing2 || ''}
-                onChange={(e) => handleEditChange(e, input._id)}
-                disabled={editMode !== input._id}
-              />
-            </div>
-            <div>
-              <strong>Billing3:</strong>
-              <input
-                type="text"
-                name="billing3"
-                value={input.billing3 || ''}
-                onChange={(e) => handleEditChange(e, input._id)}
-                disabled={editMode !== input._id}
-              />
-            </div>
-            <div>
-              <strong>CO1:</strong>
+              <strong>Billing:</strong>
               <input
                 type="checkbox"
-                name="co1"
-                checked={input.co1 || false}
+                name="billing"
+                checked={input.billing || false}
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
             </div>
             <div>
-              <strong>CO2:</strong>
+              <strong>Parts:</strong>
               <input
                 type="checkbox"
-                name="co2"
-                checked={input.co2 || false}
+                name="Parts"
+                checked={input.parts || false}
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
@@ -302,9 +244,9 @@ function App() {
             <div>
               <strong>Scheduling:</strong>
               <input
-                type="text"
+                type="checkbox"
                 name="scheduling"
-                value={input.scheduling || ''}
+                checked={input.scheduling || false}
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
