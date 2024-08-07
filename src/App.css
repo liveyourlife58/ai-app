@@ -148,6 +148,28 @@ textarea {
   box-sizing: border-box;
 }
 
+/* Layout for label and input inside list items */
+.entries-list li > div {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Vertically align items in the center */
+  margin-bottom: 15px; /* Space between each input group */
+}
+
+/* Prevent overlap by ensuring labels do not push inputs */
+.entries-list li strong {
+  flex: 0 0 120px; /* Fixed width for labels */
+  margin-right: 10px; /* Space between label and input */
+  white-space: nowrap; /* Prevent label text from wrapping */
+}
+
+/* Style for input and textarea to prevent overlap */
+.entries-list li input[type="text"],
+.entries-list li textarea {
+  flex: 1; /* Allow input fields to take remaining space */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+
 /* Ensure form and list items are properly sized */
 .new-entry-form,
 .entries-list li {
