@@ -27,6 +27,13 @@ function App() {
       .catch(error => console.error('There was an error fetching the inputs!', error));
   }, []);
 
+ // Auto-resize textarea
+ if (e.target.tagName.toLowerCase() === 'textarea') {
+  e.target.style.height = 'auto';
+  e.target.style.height = `${e.target.scrollHeight}px`;
+}
+};
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prevState => ({
@@ -35,12 +42,10 @@ function App() {
     }));
   };
 
-   // Auto-resize textarea
-   if (e.target.tagName.toLowerCase() === 'textarea') {
-    e.target.style.height = 'auto';
-    e.target.style.height = `${e.target.scrollHeight}px`;
-  }
-};
+  const autoResizeTextarea = (e) => {
+    e.target.style.height = 'auto'; // Reset the height
+    e.target.style.height = `${e.target.scrollHeight}px`; // Set the height based on the scroll height
+  };  
 
   const handleEditChange = (e, id) => {
     const { name, value, type, checked } = e.target;
