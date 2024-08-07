@@ -35,6 +35,13 @@ function App() {
     }));
   };
 
+   // Auto-resize textarea
+   if (e.target.tagName.toLowerCase() === 'textarea') {
+    e.target.style.height = 'auto';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  }
+};
+
   const handleEditChange = (e, id) => {
     const { name, value, type, checked } = e.target;
     setInputs(prevInputs => prevInputs.map(input =>
@@ -123,7 +130,7 @@ function App() {
             required
           />
           <input
-            type="text"
+            type="textarea"
             name="notes"
             value={formData.notes}
             onChange={handleChange}
@@ -169,7 +176,7 @@ function App() {
             />
           </label>
           <input
-            type="text"
+            type="textarea"
             name="scheduling"
             value={formData.scheduling}
             onChange={handleChange}
@@ -197,7 +204,7 @@ function App() {
             <div>
               <strong>Notes:</strong>
               <input
-                type="text"
+                type="textarea"
                 name="notes"
                 value={input.notes || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
@@ -257,7 +264,7 @@ function App() {
             <div>
               <strong>Scheduling:</strong>
               <input
-                type="text"
+                type="textarea"
                 name="scheduling"
                 value={input.scheduling || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
