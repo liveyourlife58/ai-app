@@ -64,7 +64,6 @@ li {
   background: #fff;
   margin: 10px 0;
   padding: 15px;
-  width: 100%;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -97,4 +96,10 @@ button.delete {
 
 button.delete:hover {
   background-color: #C0392B;
+}
+
+/* Specific styling for inputs within the list entries */
+.entries-list li input[type="text"] {
+  width: 100%; /* Ensure inputs span full width */
+  box-sizing: border-box; /* Include padding and border in the width */
 }
