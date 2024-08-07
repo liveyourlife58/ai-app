@@ -92,6 +92,7 @@ function App() {
       .then(response => {
         console.log('Input updated:', response.data);
         setSavingStatus(null); // Hide saving status
+        setEditMode(null); // Exit edit mode
       })
       .catch(error => console.error('There was an error!', error));
   };
@@ -280,4 +281,5 @@ function App() {
 }
 
 export default App;
+
 
