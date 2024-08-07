@@ -132,8 +132,8 @@ function App() {
             placeholder="Customer Name"
             required
           />
-          <input
-            type="textarea"
+          <textarea
+            type="text"
             name="notes"
             value={formData.notes}
             onChange={handleChange}
@@ -179,7 +179,7 @@ function App() {
             />
           </label>
           <input
-            type="textarea"
+            type="text"
             name="scheduling"
             value={formData.scheduling}
             onChange={handleChange}
@@ -206,8 +206,8 @@ function App() {
             </div>
             <div>
               <strong>Notes:</strong>
-              <input
-                type="textarea"
+              <textarea
+                type="text"
                 name="notes"
                 value={input.notes || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
@@ -267,7 +267,7 @@ function App() {
             <div>
               <strong>Scheduling:</strong>
               <input
-                type="textarea"
+                type="text"
                 name="scheduling"
                 value={input.scheduling || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
