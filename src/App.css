@@ -1,54 +1,156 @@
-/* General form styling */
+/* General styling for the body and headings */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #333;
+  text-align: center;
+}
+
+/* Form styling */
 form {
-  max-width: 600px; /* Limit the maximum width of the form */
-  margin: 20px auto; /* Center form horizontally */
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%; /* Ensure form spans full width */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
-/* Form inputs and textareas styling */
 form input[type="text"],
+form input[type="checkbox"],
 form textarea,
-form input[type="checkbox"] {
-  width: 100%; /* Ensure inputs and textareas span full width */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+form input[type="submit"] {
+  display: block;
+  width: 100%; /* Ensure full width */
   padding: 10px;
   margin-bottom: 10px;
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
-/* Checkbox group styling */
-.checkbox-group {
-  display: flex;
+form input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px; /* Space between checkbox and label */
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex; /* Flex to align items in the form */
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.checkbox-group label {
-  display: flex;
-  align-items: center;
-}
-
-/* Adjusted button styling */
-form input[type="submit"],
-button {
-  width: auto; /* Allow buttons to size based on content */
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 form input[type="submit"] {
   background-color: #4CAF50;
   color: white;
   border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 form input[type="submit"]:hover {
   background-color: #45a049;
+}
+
+/* List styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ensure list items span full width */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+li strong {
+  display: inline-block;
+  width: 120px;
+  color: #333;
+}
+
+/* Button styling */
+button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: white;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button.delete {
+  background-color: #FF4136;
+  float: right; /* Float delete button to the right */
+  margin-left: 10px; /* Space to the left of the delete button */
+}
+
+button.delete:hover {
+  background-color: #C0392B;
+}
+
+/* Checkbox group styling for both form and list */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group div {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.checkbox-group strong {
+  margin-right: 5px;
+}
+
+/* General textarea styling */
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  overflow: hidden;
+  min-height: 40px;
+}
+
+/* Ensure textarea spans full width in list entries */
+.entries-list li textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure form and list items are properly sized */
+.new-entry-form,
+.entries-list li {
+  width: 100%; /* Ensure form and list items span full width */
+  box-sizing: border-box; /* Include padding and border in the width */
 }
