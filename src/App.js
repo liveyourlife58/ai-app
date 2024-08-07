@@ -223,7 +223,7 @@ function App() {
             </div>
             <div className="checkbox-group">
             <div>
-              <strong>Billing:</strong>
+              <strong>Billing</strong>
               <input
                 type="checkbox"
                 name="billing"
@@ -233,7 +233,7 @@ function App() {
               />
             </div>
             <div>
-              <strong>Parts:</strong>
+              <strong>Parts</strong>
               <input
                 type="checkbox"
                 name="parts"
@@ -243,7 +243,7 @@ function App() {
               />
             </div>
             <div>
-              <strong>Scheduling:</strong>
+              <strong>Scheduling</strong>
               <input
                 type="checkbox"
                 name="scheduling"
