@@ -150,6 +150,7 @@ button.delete:hover {
 
 .checkbox-group input[type="checkbox"] {
   margin-right: 5px;
+  transform: scale(1.5);
 }
 
 .checkbox-group strong {

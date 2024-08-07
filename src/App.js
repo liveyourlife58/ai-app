@@ -84,6 +84,7 @@ function App() {
     axios.delete(`${herokuURI}/${id}`)
       .then(() => {
         console.log('Input deleted');
+        setEditMode(null);
         return axios.get(herokuURI);
       })
       .then(response => setInputs(response.data))
