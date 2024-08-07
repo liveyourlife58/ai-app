@@ -97,6 +97,8 @@ button:hover {
 
 button.delete {
   background-color: #FF4136;
+  float: right;
+  margin-left: 10px;
 }
 
 button.delete:hover {

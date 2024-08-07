@@ -260,7 +260,7 @@ function App() {
                 <button onClick={() => handleSave(input._id)}>Save</button>
                 <button onClick={() => toggleEditMode(input._id)}>Cancel</button>
                 {savingStatus === input._id && <span className="saving">Saving...</span>}
-                <button onClick={() => handleDelete(input._id)}>Delete</button>
+                <button className="delete" onClick={() => handleDelete(input._id)}>Delete</button>
               </div>
             ) : (
               <button onClick={() => toggleEditMode(input._id)}>Edit</button>
