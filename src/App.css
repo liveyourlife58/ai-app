@@ -23,23 +23,26 @@ form {
 
 form input[type="text"],
 form input[type="checkbox"],
+form textarea,
 form input[type="submit"] {
   display: block;
-  width: 100%; /* Adjusted to span full width */
+  width: 100%; /* Ensure full width */
   padding: 10px;
   margin-bottom: 10px;
   font-size: 16px;
+  box-sizing: border-box; /* Include padding and border in the width */
 }
 
 form input[type="checkbox"] {
-  width: auto; /* Adjusted for checkboxes */
+  width: auto;
   margin-right: 5px; /* Space between checkbox and label */
 }
 
 form label {
   font-weight: bold;
   margin-bottom: 5px;
-  display: block;
+  display: flex; /* Flex to align items in the form */
+  align-items: center;
 }
 
 form input[type="submit"] {
@@ -103,34 +106,34 @@ button.delete:hover {
 /* Checkbox group styling for both form and list */
 .checkbox-group {
   display: flex;
-  align-items: center; /* Vertically align items in the center */
-  gap: 10px; /* Space between checkboxes */
+  align-items: center;
+  gap: 10px;
 }
 
 .checkbox-group div {
   display: flex;
-  align-items: center; /* Align label text with the checkbox */
-  margin-right: 10px; /* Space between individual checkbox groups */
+  align-items: center;
+  margin-right: 10px;
 }
 
 .checkbox-group input[type="checkbox"] {
-  margin-right: 5px; /* Space between checkbox and label text */
+  margin-right: 5px;
 }
 
 .checkbox-group strong {
-  margin-right: 5px; /* Space between label text and checkbox */
+  margin-right: 5px;
 }
 
 /* General textarea styling */
 textarea {
-  width: 100%; /* Ensure textarea spans full width */
-  box-sizing: border-box; /* Include padding and border in the width */
-  padding: 10px; /* Adjust padding as needed */
-  border: 1px solid #ccc; /* Border styling */
-  border-radius: 4px; /* Rounded corners */
-  resize: vertical; /* Allow vertical resizing only */
-  overflow: hidden; /* Hide overflow to prevent scrollbars */
-  min-height: 40px; /* Set a minimum height for the textarea */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  overflow: hidden;
+  min-height: 40px;
 }
 
 /* Ensure textarea spans full width in list entries */
@@ -142,7 +145,6 @@ textarea {
 /* Ensure form and list items are properly sized */
 .new-entry-form,
 .entries-list li {
-  width: 100%; /* Ensure form and list items span full width */
-  box-sizing: border-box; /* Include padding and border in the width */
+  width: 100%;
+  box-sizing: border-box;
 }
-
