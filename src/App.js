@@ -32,6 +32,13 @@ function App() {
     }));
   };
 
+  const handleEditChange = (e, id) => {
+    const { name, value, type, checked } = e.target;
+    setInputs(prevInputs => prevInputs.map(input =>
+      input._id === id ? { ...input, [name]: type === 'checkbox' ? checked : value } : input
+    ));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const url = `https://ai-app-9173f269729f.herokuapp.com/api/inputs/${currentId ? currentId : ''}`;
@@ -77,19 +84,13 @@ function App() {
     }
   };
 
-  const handleEdit = (input) => {
-    setFormData({
-      customerName: input.customerName,
-      notes: input.notes,
-      billing1: input.billing1,
-      billing2: input.billing2,
-      billing3: input.billing3,
-      co1: input.co1,
-      co2: input.co2,
-      scheduling: input.scheduling
-    });
-    setEditMode(true);
-    setCurrentId(input._id);
+  const handleSave = (id) => {
+    const input = inputs.find(input => input._id === id);
+    axios.put(`https://ai-app-9173f269729f.herokuapp.com/api/inputs/${id}`, input)
+      .then(response => {
+        console.log('Input updated:', response.data);
+      })
+      .catch(error => console.error('There was an error!', error));
   };
 
   const handleDelete = (id) => {
@@ -174,15 +175,79 @@ function App() {
       <ul>
         {inputs.map(input => (
           <li key={input._id}>
-            <strong>Customer Name:</strong> {input.customerName}<br />
-            <strong>Notes:</strong> {input.notes}<br />
-            <strong>Billing1:</strong> {input.billing1}<br />
-            <strong>Billing2:</strong> {input.billing2}<br />
-            <strong>Billing3:</strong> {input.billing3}<br />
-            <strong>CO1:</strong> {input.co1 ? 'Yes' : 'No'}<br />
-            <strong>CO2:</strong> {input.co2 ? 'Yes' : 'No'}<br />
-            <strong>Scheduling:</strong> {input.scheduling}<br />
-            <button onClick={() => handleEdit(input)}>Edit</button>
+            <label>
+              <strong>Customer Name:</strong>
+              <input
+                type="text"
+                name="customerName"
+                value={input.customerName || ''}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <label>
+              <strong>Notes:</strong>
+              <input
+                type="text"
+                name="notes"
+                value={input.notes || ''}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <label>
+              <strong>Billing1:</strong>
+              <input
+                type="text"
+                name="billing1"
+                value={input.billing1 || ''}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <label>
+              <strong>Billing2:</strong>
+              <input
+                type="text"
+                name="billing2"
+                value={input.billing2 || ''}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <label>
+              <strong>Billing3:</strong>
+              <input
+                type="text"
+                name="billing3"
+                value={input.billing3 || ''}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <label>
+              <strong>CO1:</strong>
+              <input
+                type="checkbox"
+                name="co1"
+                checked={input.co1 || false}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <label>
+              <strong>CO2:</strong>
+              <input
+                type="checkbox"
+                name="co2"
+                checked={input.co2 || false}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <label>
+              <strong>Scheduling:</strong>
+              <input
+                type="text"
+                name="scheduling"
+                value={input.scheduling || ''}
+                onChange={(e) => handleEditChange(e, input._id)}
+              />
+            </label>
+            <button onClick={() => handleSave(input._id)}>Save</button>
             <button className="delete" onClick={() => handleDelete(input._id)}>Delete</button>
           </li>
         ))}
@@ -192,4 +257,3 @@ function App() {
 }
 
 export default App;
-
