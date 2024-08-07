@@ -105,6 +105,13 @@ button.delete:hover {
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
+/* Styling for input containers if needed */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure container spans full width */
+}
+
 /* Ensure form and list items are also properly sized */
 .new-entry-form,
 .entries-list li {
