@@ -39,11 +39,10 @@ function App() {
       [name]: type === 'checkbox' ? checked : value
     }));
    
-    const autoResizeTextarea = (e) => {
-      e.target.style.height = 'auto';
-      e.target.style.height = `${e.target.scrollHeight}px`;
-    };
-
+    // Auto-resize textarea
+    if (e.target.tagName.toLowerCase() === 'textarea') {
+      autoResizeTextarea(e);
+    }
   };
 
   const handleEditChange = (e, id) => {
