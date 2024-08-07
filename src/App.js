@@ -23,7 +23,14 @@ function App() {
 
   useEffect(() => {
     axios.get(herokuURI)
-      .then(response => setInputs(response.data))
+      .then(response => {
+        setInputs(response.data);
+
+        // Auto-resize all textareas on initial load
+        setTimeout(() => {
+          document.querySelectorAll('textarea').forEach(autoResizeTextarea);
+        }, 0);
+      })
       .catch(error => console.error('There was an error fetching the inputs!', error));
   }, []);
 
@@ -50,6 +57,10 @@ function App() {
     setInputs(prevInputs => prevInputs.map(input =>
       input._id === id ? { ...input, [name]: type === 'checkbox' ? checked : value } : input
     ));
+    // Auto-resize textarea in edit mode
+    if (e.target.tagName.toLowerCase() === 'textarea') {
+      autoResizeTextarea(e);
+    }
   };
 
   const handleSave = (id) => {
