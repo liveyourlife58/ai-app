@@ -23,6 +23,7 @@ form {
 }
 
 form input[type="text"],
+form input[type="checkbox"],
 form textarea,
 form input[type="submit"] {
   display: block;
@@ -130,23 +131,6 @@ button.delete:hover {
 .checkbox-group strong {
   margin-right: 5px;
 }
-
-/* Remove margin between label and checkbox */
-.checkbox-group label {
-  display: flex; /* Use flexbox for label and checkbox alignment */
-  align-items: center; /* Vertically center the checkbox and text */
-  margin-right: 0; /* Remove any right margin if necessary */
-}
-
-.checkbox-group input[type="checkbox"] {
-  margin: 0; /* Remove default margin around checkboxes */
-  margin-right: 5px; /* Adjust space between checkbox and label text */
-}
-
-.checkbox-group strong {
-  margin-right: 5px; /* Ensure consistent space between the label and checkbox */
-}
-
 
 /* General textarea styling */
 textarea {
