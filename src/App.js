@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [formData, setFormData] = useState({
-    customerName: '',
+    name: '',
     notes: '',
     billing: false,
     parts: false,
@@ -34,8 +34,6 @@ function App() {
       .catch(error => console.error('There was an error fetching the inputs!', error));
   }, []);
   
-  
-
   const autoResizeTextarea = (e) => {
     const target = e?.target || e; // If e.target exists, use it; otherwise, use e directly (for useEffect)
   
@@ -95,7 +93,7 @@ function App() {
   const handleAddNew = () => {
     setAddingNew(true);
     setFormData({
-      customerName: '',
+    name: '',
     notes: '',
     billing: false,
     parts: false,
@@ -123,7 +121,7 @@ function App() {
         });
   
         setFormData({
-          customerName: '',
+          name: '',
           notes: '',
           billing: false,
           parts: false,
@@ -152,10 +150,10 @@ function App() {
           <h2>Add New Entry</h2>
           <input
             type="text"
-            name="customerName"
+            name="name"
             value={formData.customerName}
             onChange={handleChange}
-            placeholder="Customer Name"
+            placeholder="Name"
             required
           />
           <textarea
@@ -204,11 +202,11 @@ function App() {
         {inputs.map(input => (
           <li key={input._id} className={editMode === input._id ? 'editing' : ''}>
             <div>
-              <strong>Customer Name:</strong>
+              <strong>Name:</strong>
               <input
                 type="text"
-                name="customerName"
-                value={input.customerName || ''}
+                name="name"
+                value={input.name || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
