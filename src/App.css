@@ -115,6 +115,13 @@ button.delete:hover {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: center;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
 }
 
 .checkbox-group div {
