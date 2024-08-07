@@ -192,7 +192,7 @@ function App() {
             />
           </label>
           </div>
-          <button clasName="save" type="submit">Save New Entry</button>
+          <button type="submit">Save New Entry</button>
           <button onClick={() => setAddingNew(false)}>Cancel</button>
         </form>
       )}

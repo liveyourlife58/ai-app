@@ -23,7 +23,15 @@ form {
 }
 
 /* General styling for form inputs and textarea */
-form input[type="text"],
+form input[type="text"] {
+  display: block;
+  width: 100%; /* Ensure full width for text inputs and textareas */
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
 form textarea,
 form input[type="submit"] {
   display: block;
@@ -112,7 +120,6 @@ button:hover {
 
 button.save {
   background-color: #00b318;
-  ;
 }
 
 button.delete {
@@ -164,6 +171,13 @@ textarea {
 .entries-list li textarea {
   width: 100%;
   box-sizing: border-box;
+  font-size: 16px;
+}
+
+.entries-list li text {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 20px;
 }
 
 /* Layout for label and input inside list items */
