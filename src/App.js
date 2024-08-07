@@ -140,7 +140,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>MongoDB Entry Manager</h1>
+      <h1>AI Review Manager</h1>
       {!addingNew && !editMode && (
         <button onClick={handleAddNew} className="add-new-button">Add New Entry</button>
       )}
@@ -197,7 +197,7 @@ function App() {
         </form>
       )}
 
-      <h2>List of Entries</h2>
+      <h2>Project List</h2>
       <ul className="entries-list">
         {inputs.map(input => (
           <li key={input._id} className={editMode === input._id ? 'editing' : ''}>
