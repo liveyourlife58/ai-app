@@ -15,11 +15,13 @@ function App() {
   });
 
   const [inputs, setInputs] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [currentId, setCurrentId] = useState(null);
+  const [editMode, setEditMode] = useState(null);
+  const [savingStatus, setSavingStatus] = useState(null);
+
+  const herokuURI = 'https://ai-app-9173f269729f.herokuapp.com/api/inputs';
 
   useEffect(() => {
-    axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs')
+    axios.get(herokuURI)
       .then(response => setInputs(response.data))
       .catch(error => console.error('There was an error fetching the inputs!', error));
   }, []);
@@ -41,7 +43,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = `https://ai-app-9173f269729f.herokuapp.com/api/inputs/${currentId ? currentId : ''}`;
+    const url = editMode ? `${herokuURI}/${editMode}` : herokuURI;
 
     if (editMode) {
       axios.put(url, formData)
@@ -57,14 +59,13 @@ function App() {
             co2: false,
             scheduling: ''
           });
-          setEditMode(false);
-          setCurrentId(null);
-          return axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs');
+          setEditMode(null);
+          return axios.get(herokuURI);
         })
         .then(response => setInputs(response.data))
         .catch(error => console.error('There was an error!', error));
     } else {
-      axios.post('https://ai-app-9173f269729f.herokuapp.com/api/inputs', formData)
+      axios.post(herokuURI, formData)
         .then(response => {
           console.log('Input saved:', response.data);
           setFormData({
@@ -77,7 +78,7 @@ function App() {
             co2: false,
             scheduling: ''
           });
-          return axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs');
+          return axios.get(herokuURI);
         })
         .then(response => setInputs(response.data))
         .catch(error => console.error('There was an error!', error));
@@ -86,21 +87,27 @@ function App() {
 
   const handleSave = (id) => {
     const input = inputs.find(input => input._id === id);
-    axios.put(`https://ai-app-9173f269729f.herokuapp.com/api/inputs/${id}`, input)
+    setSavingStatus(id); // Show saving status
+    axios.put(`${herokuURI}/${id}`, input)
       .then(response => {
         console.log('Input updated:', response.data);
+        setSavingStatus(null); // Hide saving status
       })
       .catch(error => console.error('There was an error!', error));
   };
 
   const handleDelete = (id) => {
-    axios.delete(`https://ai-app-9173f269729f.herokuapp.com/api/inputs/${id}`)
+    axios.delete(`${herokuURI}/${id}`)
       .then(() => {
         console.log('Input deleted');
-        return axios.get('https://ai-app-9173f269729f.herokuapp.com/api/inputs');
+        return axios.get(herokuURI);
       })
       .then(response => setInputs(response.data))
       .catch(error => console.error('There was an error!', error));
+  };
+
+  const toggleEditMode = (id) => {
+    setEditMode(editMode === id ? null : id);
   };
 
   return (
@@ -174,7 +181,7 @@ function App() {
       <h2>List of Inputs</h2>
       <ul>
         {inputs.map(input => (
-          <li key={input._id}>
+          <li key={input._id} className={editMode === input._id ? 'editing' : ''}>
             <label>
               <strong>Customer Name:</strong>
               <input
@@ -182,6 +189,7 @@ function App() {
                 name="customerName"
                 value={input.customerName || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
             <label>
@@ -191,6 +199,7 @@ function App() {
                 name="notes"
                 value={input.notes || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
             <label>
@@ -200,6 +209,7 @@ function App() {
                 name="billing1"
                 value={input.billing1 || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
             <label>
@@ -209,6 +219,7 @@ function App() {
                 name="billing2"
                 value={input.billing2 || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
             <label>
@@ -218,6 +229,7 @@ function App() {
                 name="billing3"
                 value={input.billing3 || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
             <label>
@@ -227,6 +239,7 @@ function App() {
                 name="co1"
                 checked={input.co1 || false}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
             <label>
@@ -236,6 +249,7 @@ function App() {
                 name="co2"
                 checked={input.co2 || false}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
             <label>
@@ -245,10 +259,19 @@ function App() {
                 name="scheduling"
                 value={input.scheduling || ''}
                 onChange={(e) => handleEditChange(e, input._id)}
+                disabled={editMode !== input._id}
               />
             </label>
-            <button onClick={() => handleSave(input._id)}>Save</button>
-            <button className="delete" onClick={() => handleDelete(input._id)}>Delete</button>
+            {editMode === input._id ? (
+              <div>
+                <button onClick={() => handleSave(input._id)}>Save</button>
+                <button onClick={() => toggleEditMode(input._id)}>Cancel</button>
+                {savingStatus === input._id && <span className="saving">Saving...</span>}
+              </div>
+            ) : (
+              <button onClick={() => toggleEditMode(input._id)}>Edit</button>
+            )}
+            <button onClick={() => handleDelete(input._id)}>Delete</button>
           </li>
         ))}
       </ul>
@@ -257,3 +280,4 @@ function App() {
 }
 
 export default App;
+
