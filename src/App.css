@@ -99,7 +99,15 @@ button.delete:hover {
 }
 
 /* Specific styling for inputs within the list entries */
-.entries-list li input[type="text"] {
+.entries-list li input[type="text"],
+.entries-list li input[type="checkbox"] {
   width: 100%; /* Ensure inputs span full width */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+/* Ensure form and list items are also properly sized */
+.new-entry-form,
+.entries-list li {
+  width: 100%; /* Ensure form and list items span full width */
   box-sizing: border-box; /* Include padding and border in the width */
 }
