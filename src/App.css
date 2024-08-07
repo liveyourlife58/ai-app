@@ -48,6 +48,7 @@ form input[type="checkbox"] {
   width: auto; /* Prevent checkboxes from stretching full width */
   margin-right: 5px; /* Space between checkbox and label */
   margin-left: 20px;
+  transform: scale(1.5);
 }
 
 /* Label styling */
@@ -188,10 +189,16 @@ textarea {
 }
 
 /* Style for input and textarea to prevent overlap */
-.entries-list li input[type="text"],
+.entries-list li input[type="text"] {
+  flex: 1; /* Allow input fields to take remaining space */
+  box-sizing: border-box; /* Include padding and border in the width */
+  font-size: 20px;
+}
+
 .entries-list li textarea {
   flex: 1; /* Allow input fields to take remaining space */
   box-sizing: border-box; /* Include padding and border in the width */
+  font-size: 16px;
 }
 
 /* Container for the delete button */
