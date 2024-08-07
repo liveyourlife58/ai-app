@@ -26,10 +26,14 @@ h1, h2 {
 }
 
 .new-entry-form {
-  display: flex;
+  display: none; /* Hide the form initially */
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+.new-entry-form.visible {
+  display: flex; /* Show the form when adding a new entry */
 }
 
 .new-entry-form input[type="text"],
@@ -54,34 +58,30 @@ h1, h2 {
   padding: 10px;
   margin-bottom: 10px;
   background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .entries-list li div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 10px;
 }
 
-.entries-list li div strong {
-  flex-basis: 25%;
-  text-align: left;
+.entries-list li div label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .entries-list li input[type="text"],
 .entries-list li input[type="checkbox"] {
-  flex-grow: 1;
+  font-size: 14px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
-.entries-list li button {
-  margin-top: 10px;
+.entries-list li button.save-button {
   padding: 10px;
   font-size: 14px;
   border: none;
@@ -89,13 +89,36 @@ h1, h2 {
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
+  margin-right: 10px;
 }
 
-.entries-list li button:hover {
+.entries-list li button.save-button:hover {
   background-color: #45a049;
+}
+
+.entries-list li button.delete-button {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+.entries-list li button.delete-button:hover {
+  background-color: #e53935;
+}
+
+.entries-list li .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .saving {
   color: #4CAF50;
   font-weight: bold;
+  margin-bottom: 10px;
 }
+
