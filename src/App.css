@@ -110,6 +110,11 @@ button:hover {
   background-color: #0056b3;
 }
 
+button.save {
+  background-color: #00b318;
+  ;
+}
+
 button.delete {
   background-color: #FF4136;
   float: right; /* Float delete button to the right */
