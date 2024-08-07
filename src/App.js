@@ -84,7 +84,7 @@ function App() {
     axios.delete(`${herokuURI}/${id}`)
       .then(() => {
         console.log('Input deleted');
-        setEditMode(null);
+        setEditMode(null);t 
         return axios.get(herokuURI);
       })
       .then(response => setInputs(response.data))
@@ -141,7 +141,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>AI Review Manager</h1>
+      <h1>Audio Integrators Review Manager</h1>
       {!addingNew && !editMode && (
         <button onClick={handleAddNew} className="add-new-button">Add New Entry</button>
       )}
