@@ -165,6 +165,7 @@ function App() {
             onChange={handleChange}
             placeholder="Notes"
           />
+          <div className="checkbox-group">
           <label>
             Billing
           <input
@@ -192,6 +193,7 @@ function App() {
               onChange={handleChange}
             />
           </label>
+          </div>
           <button type="submit">Save New Entry</button>
           <button onClick={() => setAddingNew(false)}>Cancel</button>
         </form>
@@ -221,6 +223,7 @@ function App() {
                 disabled={editMode !== input._id}
               />
             </div>
+            <div className="checkbox-group">
             <div>
               <strong>Billing:</strong>
               <input
@@ -235,7 +238,7 @@ function App() {
               <strong>Parts:</strong>
               <input
                 type="checkbox"
-                name="Parts"
+                name="parts"
                 checked={input.parts || false}
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
@@ -250,6 +253,7 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
+            </div>
             </div>
             {editMode === input._id ? (
               <div>
