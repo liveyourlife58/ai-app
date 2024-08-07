@@ -22,22 +22,31 @@ form {
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
+/* General styling for form inputs and textarea */
 form input[type="text"],
-form input[type="checkbox"],
 form textarea,
 form input[type="submit"] {
   display: block;
-  width: 100%; /* Ensure full width */
+  width: 100%; /* Ensure full width for text inputs and textareas */
   padding: 10px;
   margin-bottom: 10px;
   font-size: 16px;
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
+/* Checkbox styling */
 form input[type="checkbox"] {
-  width: auto;
+  display: inline-block; /* Inline-block to align better with labels */
+  width: auto; /* Prevent checkboxes from stretching full width */
   margin-right: 5px; /* Space between checkbox and label */
 }
+
+/* Label styling */
+form label {
+  display: flex; /* Flexbox for aligning checkboxes and labels */
+  align-items: center;
+}
+
 
 form label {
   font-weight: bold;
