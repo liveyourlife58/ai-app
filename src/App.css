@@ -144,8 +144,17 @@ button.delete:hover {
   margin-right: 5px; /* Adjust space between checkbox and label text */
 }
 
+/* Styling for strong tags in checkbox group to look like input entries */
 .checkbox-group strong {
-  margin-right: 5px; /* Ensure consistent space between the label and checkbox */
+  font-size: 16px; /* Same font size as input fields */
+  color: #333; /* Same text color as input fields */
+  background-color: #fff; /* Same background color as input fields */
+  border: 1px solid #ccc; /* Same border style as input fields */
+  padding: 10px; /* Same padding as input fields */
+  border-radius: 4px; /* Same border radius as input fields */
+  display: inline-block; /* Ensure it only takes as much width as necessary */
+  box-sizing: border-box; /* Include padding and border in width */
+  margin-right: 5px; /* Space between the strong element and checkbox */
 }
 
 
