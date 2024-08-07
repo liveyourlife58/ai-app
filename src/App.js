@@ -16,6 +16,7 @@ function App() {
 
   const [inputs, setInputs] = useState([]);
   const [editMode, setEditMode] = useState(null);
+  const [addingNew, setAddingNew] = useState(false);
   const [savingStatus, setSavingStatus] = useState(null);
 
   const herokuURI = 'https://ai-app-9173f269729f.herokuapp.com/api/inputs';
@@ -41,50 +42,6 @@ function App() {
     ));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const url = editMode ? `${herokuURI}/${editMode}` : herokuURI;
-
-    if (editMode) {
-      axios.put(url, formData)
-        .then(response => {
-          console.log('Input updated:', response.data);
-          setFormData({
-            customerName: '',
-            notes: '',
-            billing1: '',
-            billing2: '',
-            billing3: '',
-            co1: false,
-            co2: false,
-            scheduling: ''
-          });
-          setEditMode(null);
-          return axios.get(herokuURI);
-        })
-        .then(response => setInputs(response.data))
-        .catch(error => console.error('There was an error!', error));
-    } else {
-      axios.post(herokuURI, formData)
-        .then(response => {
-          console.log('Input saved:', response.data);
-          setFormData({
-            customerName: '',
-            notes: '',
-            billing1: '',
-            billing2: '',
-            billing3: '',
-            co1: false,
-            co2: false,
-            scheduling: ''
-          });
-          return axios.get(herokuURI);
-        })
-        .then(response => setInputs(response.data))
-        .catch(error => console.error('There was an error!', error));
-    }
-  };
-
   const handleSave = (id) => {
     const input = inputs.find(input => input._id === id);
     setSavingStatus(id); // Show saving status
@@ -107,83 +64,127 @@ function App() {
       .catch(error => console.error('There was an error!', error));
   };
 
+  const handleAddNew = () => {
+    setAddingNew(true);
+    setFormData({
+      customerName: '',
+      notes: '',
+      billing1: '',
+      billing2: '',
+      billing3: '',
+      co1: false,
+      co2: false,
+      scheduling: ''
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post(herokuURI, formData)
+      .then(response => {
+        console.log('Input saved:', response.data);
+        setFormData({
+          customerName: '',
+          notes: '',
+          billing1: '',
+          billing2: '',
+          billing3: '',
+          co1: false,
+          co2: false,
+          scheduling: ''
+        });
+        setAddingNew(false);
+        return axios.get(herokuURI);
+      })
+      .then(response => setInputs(response.data))
+      .catch(error => console.error('There was an error!', error));
+  };
+
   const toggleEditMode = (id) => {
     setEditMode(editMode === id ? null : id);
   };
 
   return (
     <div className="App">
-      <h1>{editMode ? 'Edit Input' : 'Save Input to MongoDB'}</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="customerName"
-          value={formData.customerName}
-          onChange={handleChange}
-          placeholder="Customer Name"
-          required
-        />
-        <input
-          type="text"
-          name="notes"
-          value={formData.notes}
-          onChange={handleChange}
-          placeholder="Notes"
-        />
-        <input
-          type="text"
-          name="billing1"
-          value={formData.billing1}
-          onChange={handleChange}
-          placeholder="Billing1"
-        />
-        <input
-          type="text"
-          name="billing2"
-          value={formData.billing2}
-          onChange={handleChange}
-          placeholder="Billing2"
-        />
-        <input
-          type="text"
-          name="billing3"
-          value={formData.billing3}
-          onChange={handleChange}
-          placeholder="Billing3"
-        />
-        <label>
-          CO1
+      <h1>MongoDB Entry Manager</h1>
+      {!addingNew && !editMode && (
+        <button onClick={handleAddNew} className="add-new-button">Add New Entry</button>
+      )}
+      
+      {addingNew && (
+        <form onSubmit={handleSubmit} className="new-entry-form">
+          <h2>Add New Entry</h2>
           <input
-            type="checkbox"
-            name="co1"
-            checked={formData.co1}
+            type="text"
+            name="customerName"
+            value={formData.customerName}
             onChange={handleChange}
+            placeholder="Customer Name"
+            required
           />
-        </label>
-        <label>
-          CO2
           <input
-            type="checkbox"
-            name="co2"
-            checked={formData.co2}
+            type="text"
+            name="notes"
+            value={formData.notes}
             onChange={handleChange}
+            placeholder="Notes"
           />
-        </label>
-        <input
-          type="text"
-          name="scheduling"
-          value={formData.scheduling}
-          onChange={handleChange}
-          placeholder="Scheduling"
-        />
-        <button type="submit">{editMode ? 'Update Input' : 'Save Input'}</button>
-      </form>
+          <input
+            type="text"
+            name="billing1"
+            value={formData.billing1}
+            onChange={handleChange}
+            placeholder="Billing1"
+          />
+          <input
+            type="text"
+            name="billing2"
+            value={formData.billing2}
+            onChange={handleChange}
+            placeholder="Billing2"
+          />
+          <input
+            type="text"
+            name="billing3"
+            value={formData.billing3}
+            onChange={handleChange}
+            placeholder="Billing3"
+          />
+          <label>
+            CO1
+            <input
+              type="checkbox"
+              name="co1"
+              checked={formData.co1}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            CO2
+            <input
+              type="checkbox"
+              name="co2"
+              checked={formData.co2}
+              onChange={handleChange}
+            />
+          </label>
+          <input
+            type="text"
+            name="scheduling"
+            value={formData.scheduling}
+            onChange={handleChange}
+            placeholder="Scheduling"
+          />
+          <button type="submit">Save New Entry</button>
+          <button onClick={() => setAddingNew(false)}>Cancel</button>
+        </form>
+      )}
 
-      <h2>List of Inputs</h2>
-      <ul>
+      <h2>List of Entries</h2>
+      <ul className="entries-list">
         {inputs.map(input => (
           <li key={input._id} className={editMode === input._id ? 'editing' : ''}>
-            <label>
+            <div>
               <strong>Customer Name:</strong>
               <input
                 type="text"
@@ -192,8 +193,8 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
-            <label>
+            </div>
+            <div>
               <strong>Notes:</strong>
               <input
                 type="text"
@@ -202,8 +203,8 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
-            <label>
+            </div>
+            <div>
               <strong>Billing1:</strong>
               <input
                 type="text"
@@ -212,8 +213,8 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
-            <label>
+            </div>
+            <div>
               <strong>Billing2:</strong>
               <input
                 type="text"
@@ -222,8 +223,8 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
-            <label>
+            </div>
+            <div>
               <strong>Billing3:</strong>
               <input
                 type="text"
@@ -232,8 +233,8 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
-            <label>
+            </div>
+            <div>
               <strong>CO1:</strong>
               <input
                 type="checkbox"
@@ -242,8 +243,8 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
-            <label>
+            </div>
+            <div>
               <strong>CO2:</strong>
               <input
                 type="checkbox"
@@ -252,8 +253,8 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
-            <label>
+            </div>
+            <div>
               <strong>Scheduling:</strong>
               <input
                 type="text"
@@ -262,17 +263,17 @@ function App() {
                 onChange={(e) => handleEditChange(e, input._id)}
                 disabled={editMode !== input._id}
               />
-            </label>
+            </div>
             {editMode === input._id ? (
               <div>
                 <button onClick={() => handleSave(input._id)}>Save</button>
                 <button onClick={() => toggleEditMode(input._id)}>Cancel</button>
                 {savingStatus === input._id && <span className="saving">Saving...</span>}
+                <button onClick={() => handleDelete(input._id)}>Delete</button>
               </div>
             ) : (
               <button onClick={() => toggleEditMode(input._id)}>Edit</button>
             )}
-            <button onClick={() => handleDelete(input._id)}>Delete</button>
           </li>
         ))}
       </ul>
@@ -281,5 +282,6 @@ function App() {
 }
 
 export default App;
+
 
 
