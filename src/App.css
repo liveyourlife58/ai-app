@@ -1,124 +1,99 @@
-.App {
+/* App.css */
+
+body {
   font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
+  background-color: #f4f4f4;
+  margin: 0;
   padding: 20px;
 }
 
 h1, h2 {
+  color: #333;
   text-align: center;
 }
 
-.add-new-button {
-  display: block;
+form {
+  max-width: 600px;
   margin: 20px auto;
-  padding: 10px 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="text"],
+form input[type="checkbox"],
+form input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
   font-size: 16px;
+}
+
+form input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+form input[type="submit"] {
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-.add-new-button:hover {
+form input[type="submit"]:hover {
   background-color: #45a049;
 }
 
-.new-entry-form {
-  display: none; /* Hide the form initially */
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.new-entry-form.visible {
-  display: flex; /* Show the form when adding a new entry */
-}
-
-.new-entry-form input[type="text"],
-.new-entry-form input[type="checkbox"],
-.new-entry-form button {
-  font-size: 14px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.entries-list {
+ul {
   list-style-type: none;
   padding: 0;
 }
 
-.entries-list li {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
+li {
+  background: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.entries-list li div {
-  margin-bottom: 10px;
+li strong {
+  display: inline-block;
+  width: 120px;
+  color: #333;
 }
 
-.entries-list li div label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.entries-list li input[type="text"],
-.entries-list li input[type="checkbox"] {
-  font-size: 14px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-
-.entries-list li button.save-button {
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
+button {
   margin-right: 10px;
-}
-
-.entries-list li button.save-button:hover {
-  background-color: #45a049;
-}
-
-.entries-list li button.delete-button {
-  padding: 10px;
+  padding: 5px 10px;
   font-size: 14px;
+  color: white;
+  background-color: #007BFF;
   border: none;
   border-radius: 4px;
-  background-color: #f44336;
-  color: white;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.entries-list li button.delete-button:hover {
-  background-color: #e53935;
+button:hover {
+  background-color: #0056b3;
 }
 
-.entries-list li .input-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+button.delete {
+  background-color: #FF4136;
 }
 
-.saving {
-  color: #4CAF50;
-  font-weight: bold;
-  margin-bottom: 10px;
+button.delete:hover {
+  background-color: #C0392B;
 }
-
