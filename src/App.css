@@ -137,7 +137,7 @@ button.delete:hover {
 /* Checkbox group styling for both form and list */
 .checkbox-group {
   display: flex;
-  flex-wrap: wrap; /* Allow checkboxes to wrap to the next line if necessary */
+  flex-wrap: nowrap; /* Allow checkboxes to wrap to the next line if necessary */
   align-items: center;
   gap: 10px;
   justify-content: center;
