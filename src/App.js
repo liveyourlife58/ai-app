@@ -81,15 +81,28 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`${herokuURI}/${id}`)
-      .then(() => {
-        console.log('Input deleted');
-        setEditMode(null);
-        return axios.get(herokuURI);
-      })
-      .then(response => setInputs(response.data))
-      .catch(error => console.error('There was an error!', error));
+    // Prompt the user for confirmation
+    const isConfirmed = window.confirm("Are you sure you want to delete this entry? This action cannot be undone.");
+    
+    // If confirmed, proceed with the deletion
+    if (isConfirmed) {
+      axios.delete(`${herokuURI}/${id}`)
+        .then(() => {
+          console.log('Input deleted');
+          setEditMode(null); // Reset or adjust the edit mode as needed
+          return axios.get(herokuURI); // Fetch updated list
+        })
+        .then(response => {
+          setInputs(response.data); // Update state with new list
+        })
+        .catch(error => {
+          console.error('Error deleting input:', error);
+        });
+    } else {
+      console.log('Deletion canceled');
+    }
   };
+  
 
   const handleAddNew = () => {
     setAddingNew(true);
