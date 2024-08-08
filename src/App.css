@@ -195,6 +195,7 @@ textarea {
   flex: 1; /* Allow input fields to take remaining space */
   box-sizing: border-box; /* Include padding and border in the width */
   font-size: 20px;
+  color:#d73812;
 }
 
 .entries-list li textarea {
