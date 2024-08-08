@@ -222,6 +222,18 @@ textarea {
     flex-wrap: wrap;
   }
 
+  .checkbox-group {
+    gap: 5px;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    transform: scale(1.2); /* Slightly reduce checkbox size */
+  }
+
+  .checkbox-group strong {
+    font-size: 12px; /* Reduce label font size */
+  }
+
   .checkbox-group label,
   .checkbox-group div {
     flex: 1 1 100%; /* Make checkboxes take full width on mobile */
