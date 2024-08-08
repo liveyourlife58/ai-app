@@ -137,6 +137,7 @@ button.delete:hover {
 /* Checkbox group styling for both form and list */
 .checkbox-group {
   display: flex;
+  flex-wrap: wrap; /* Allow checkboxes to wrap to the next line if necessary */
   align-items: center;
   gap: 10px;
   justify-content: center;
@@ -213,3 +214,32 @@ textarea {
   width: 100%; /* Ensure form and list items span full width */
   box-sizing: border-box; /* Include padding and border in the width */
 }
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 600px) {
+  form label {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
+  .checkbox-group label,
+  .checkbox-group div {
+    flex: 1 1 100%; /* Make checkboxes take full width on mobile */
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  li strong {
+    width: 80px; /* Adjust label width on smaller screens */
+  }
+
+  .entries-list li input[type="text"],
+  .entries-list li textarea {
+    font-size: 16px;
+  }
+}
+
